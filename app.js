@@ -4,7 +4,7 @@ navigator.getUserMedia =
   navigator.webkitGetUserMedia;
 
 var app = {
-  preview: document.querySelector("video"),
+  lena: document.querySelector("img"),
   shoot: document.querySelector("#shoot"),
   canvas: document.querySelector("canvas"),
   stream: null
@@ -55,16 +55,13 @@ function processImage(){
 }
 
 function capture(){
-  if(app.stream != null){
-    app.ctx.drawImage(app.preview, 0, 0, app.canvas.width, app.canvas.height);
-  }
+  app.ctx.drawImage(app.lena, 0, 0);
   processImage();
 }
 
 function initialize(){
   app.shoot.addEventListener("click", capture);
   app.ctx = app.canvas.getContext("2d");
-  navigator.getUserMedia(MEDIA_CONSTRAINT, streamAquired, streamAquisitionFailed);
 }
 
 function unload(){
